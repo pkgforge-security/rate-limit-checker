@@ -22,8 +22,8 @@ var (
 	wg         sync.WaitGroup
 	logWriter  io.Writer
 	cmd        = &cobra.Command{
-		Use:   "app",
-		Short: "A brief description of your application",
+		Use:   "rate-limit-checker",
+		Short: "Check whether a domain has a rate limit enabled",
 		Run:   runLoadTest,
 	}
 )
@@ -94,7 +94,7 @@ func runLoadTest(cmd *cobra.Command, args []string) {
 func sendRequest(method, link string, requestCount int) (*http.Response, error) {
 	client := &http.Client{}
 	request, _ := http.NewRequest(method, link, nil)
-	request.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36")
+	request.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36")
 	response, err := client.Do(request)
 	if err != nil {
 		fmt.Fprintln(logWriter, err.Error())
